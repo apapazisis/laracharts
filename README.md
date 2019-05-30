@@ -1,4 +1,4 @@
-## Laravel Charts with WebWorker
+## Laravel Ajax Charts with WebWorker
 
 ### Documentation
 
