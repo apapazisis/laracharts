@@ -53,6 +53,8 @@
 
           class TestChart extends BaseChart
           {
+            public $id = '8jg324j23hg4';
+          
             protected $date = null; // it is used for filtering
 
             protected $data = [];
