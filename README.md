@@ -1,1 +1,1 @@
-# laracharts
+# Laravel Charts with WebWorker
