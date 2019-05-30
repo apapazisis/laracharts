@@ -14,26 +14,22 @@ class BaseChart
     public $route;
 
     public $datasets = [];
-
+    
     protected $dataset = Dataset::class;
-
+    
     public $labels = [];
 
     public $view = 'echarts::render';
 
     public $options = [];
 
-    private $chartLetters = 'abcdefghijklmnopqrstuvwxyz';
-
     /**
      * BaseChart constructor.
      */
     public function __construct()
     {
-        $this->id = substr(str_shuffle(str_repeat($x = $this->chartLetters, ceil(25 / strlen($x)))), 1, 25);
         $this->class = class_basename($this);
     }
-
 
     public function render(): \Illuminate\Contracts\View\View
     {
