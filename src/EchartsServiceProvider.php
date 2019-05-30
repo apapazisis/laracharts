@@ -12,7 +12,7 @@ class EchartsServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/js/worker.js' => public_path('vendor/charts'),
-            __DIR__.'/js/charts.js' => public_path('vendor/charts')
+            __DIR__.'/js/charts.js' => public_path('vendor/charts'),
         ], 'public');
     }
 }
