@@ -155,6 +155,16 @@
                             'type' => 'cross'
                         ]
                     ],
+                    'toolbox' => [
+                          'feature' => [
+                              'saveAsImage' => [
+                                  'show' => true,
+                                  'title' => 'save as image',
+                                  'pixelRatio' => 2
+                              ]
+                          ]
+                    ],
+                    'animationEasing' => 'elasticOut',
                     'legend' => [
                         'data' => ['lg1', 'lg2', 'lg3']
                     ],
