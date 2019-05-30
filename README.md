@@ -9,7 +9,42 @@
           <script src="{{ asset('js/echarts.min.js') }}"></script>
           <script src="{{ asset('vendor/charts/charts.js')}}"></script>
 
-3. TestChart Class
+3. Routing
+
+          Route::get('/', function ()
+          {
+              $testChart = new \App\Charts\TestChart();
+
+              $testChart2 = new \App\Charts\Test2Chart();
+
+              return view('welcome', compact('testChart', 'testChart2'));
+          });
+
+
+          Route::post('/data', function (\Illuminate\Http\Request $request)
+          {
+              $class = 'App\\Charts\\' . $request->get('chartClass');
+              $chart = (new $class)->make($request->except('chartClass'));
+
+              return response()->json(
+                  $chart
+              );
+          });
+
+4. Blade
+
+          <body>
+              <div class="flex-center position-ref full-height">
+                  <div class="content">
+                      {!! $testChart->render() !!}
+                      {!! $testChart2->render() !!}
+                      1o <input type="text" onchange="{{ $testChart->id }}CreateOrUpdateChart({'date': '2019-01-01'})">
+                      2o <input type="text" onchange="{{ $testChart2->id }}CreateOrUpdateChart()">
+                  </div>
+              </div>
+          </body>
+              
+4. TestChart Class
           
           namespace App\Charts;
 
