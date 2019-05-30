@@ -21,6 +21,7 @@ function convertDataSetOptions(dataset)
         Object.keys(object).forEach((key) => {
             if (key === 'options') {
                 Object.assign(object, object['options']);
+                delete object['options'];
             }
         });
     });
@@ -35,15 +36,11 @@ function generateNewChart(chartId, chartArgs)
     const options = {
         series: convertDataSetOptions(chartArgs.datasets),
         labels: chartArgs.labels,
-        grid: chartArgs.options.grid,
-        legend: chartArgs.options.legend,
-        title: chartArgs.options.title,
-        tooltip: chartArgs.options.tooltip,
-        xAxis: chartArgs.options.xAxis,
-        yAxis: chartArgs.options.yAxis,
     };
 
-    window[chartId + 'Options']  = options;
+    Object.assign(options, chartArgs.options);
+
+    window[chartId + 'Options'] = options;
 
     const echart = echarts.init(document.getElementById(chartId));
 
