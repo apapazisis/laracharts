@@ -1,13 +1,13 @@
 function convertFunctions(chartArgs)
 {
     Object.keys(chartArgs).forEach((key) => {
-        if (typeof chartArgs[key] === 'string') {
-            if (chartArgs[key].includes('function')) {
+        if (typeof chartArgs[key] === "string") {
+            if (chartArgs[key].includes("function")) {
                 chartArgs[key] = new Function("return " + chartArgs[key])()
             }
         }
 
-        if (typeof chartArgs[key] === 'object'){
+        if (typeof chartArgs[key] === "object"){
             convertFunctions(chartArgs[key]);
         }
     });
@@ -19,9 +19,9 @@ function convertDataSetOptions(dataset)
 {
     dataset.forEach((object) => {
         Object.keys(object).forEach((key) => {
-            if (key === 'options') {
-                Object.assign(object, object['options']);
-                delete object['options'];
+            if (key === "options") {
+                Object.assign(object, object["options"]);
+                delete object["options"];
             }
         });
     });
@@ -40,7 +40,7 @@ function generateNewChart(chartId, chartArgs)
 
     Object.assign(options, chartArgs.options);
 
-    window[chartId + 'Options'] = options;
+    window[chartId + "Options"] = options;
 
     const echart = echarts.init(document.getElementById(chartId));
 
