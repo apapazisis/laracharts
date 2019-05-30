@@ -2,8 +2,15 @@
 
 ### Documentation
 
-     
+1. Public the files through php artisan vendor:public
 
+2. Add scripts in header 
+          
+          <script src="{{ asset('js/echarts.min.js') }}"></script>
+          <script src="{{ asset('vendor/charts/charts.js')}}"></script>
+
+3. TestChart Class
+          
           namespace App\Charts;
 
           use Apapazisis\Echarts\Classes\BaseChart;
