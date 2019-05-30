@@ -5,7 +5,7 @@
 1. Publish the files through 
           
           php artisan vendor:publish
-          Provider: Apapazisis\Echarts\EchartsServiceProvide
+          Provider: Apapazisis\Echarts\EchartsServiceProvider
 
 2. Add scripts in header 
           
