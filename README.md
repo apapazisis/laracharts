@@ -113,7 +113,7 @@
                 $this->dataset('Sales2', 'bar', $this->data['accessclearingdate'])->options([
                     'itemStyle' => [
                         'normal' => [
-                            'color' => 'function (params){console.log(params);if (params.dataIndex > 0) return "yellow"; else return "blue";}',
+                            'color' => 'function (params){console.log(window.' . $this->id . 'Options);if (params.dataIndex > 0) return "yellow"; else return "blue";}',
                             'barBorderColor' => 'gray',
                             'barBorderWidth' => 0,
                             'label' => [
