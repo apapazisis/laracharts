@@ -107,7 +107,9 @@
                                 'textStyle' => [
                                     'fontWeight' => 500
                                 ],
-                                'color' => 'gray'
+                                'color' => 'gray',
+                                'formatter' => 'function(params){var array = ' . json_encode($this->data['mailsentdates']) . '; return params.data + array[params.dataIndex];}'
+                    
                             ]
                         ]
                     ]
