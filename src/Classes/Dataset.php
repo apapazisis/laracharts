@@ -8,12 +8,9 @@ class Dataset
 {
     public $name = 'Undefined';
 
-
     public $type = '';
 
-
     public $data = [];
-
 
     public $options = [];
 
@@ -26,14 +23,12 @@ class Dataset
         return $this;
     }
 
-
     public function type(string $type)
     {
         $this->type = $type;
 
         return $this;
     }
-
 
     public function data($data)
     {
@@ -45,7 +40,6 @@ class Dataset
 
         return $this;
     }
-
 
     public function options($options)
     {
