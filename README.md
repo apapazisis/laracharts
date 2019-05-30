@@ -2,11 +2,14 @@
 
 ### Documentation
 
-1. Publish the files through php artisan vendor:public
+1. Publish the files through 
+          
+          php artisan vendor:public
+          Provider: Apapazisis\Echarts\EchartsServiceProvide
 
 2. Add scripts in header 
           
-          <script src="{{ asset('js/echarts.min.js') }}"></script>
+          <script src="{{ asset('js/echarts.min.js') }}"></script> <!-- Download the Echarts library -->
           <script src="{{ asset('vendor/charts/charts.js')}}"></script>
 
 3. Routing
