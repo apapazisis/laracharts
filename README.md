@@ -1,5 +1,7 @@
 ## Laravel Ajax Charts with WebWorker
 
+<a href="https://github.styleci.io/repos/189413172"><img src="https://github.styleci.io/repos/189413172/shield?branch=master" alt="StyleCI"></a>
+
 ### Documentation
 
 1. Publish the files through 
