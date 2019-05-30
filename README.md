@@ -2,7 +2,7 @@
 
 ### Documentation
 
-1. Public the files through php artisan vendor:public
+1. Publish the files through php artisan vendor:public
 
 2. Add scripts in header 
           
