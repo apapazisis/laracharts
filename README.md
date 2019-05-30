@@ -18,13 +18,13 @@
 
           class TestChart extends BaseChart
           {
-            protected $date = null;
+            protected $date = null; // it is used for filtering
 
             protected $data = [];
 
             public function __construct()
             {
-                $this->setRoute();
+                $this->setRoute(); // Set the route 
                 parent::__construct();
             }
 
@@ -41,9 +41,12 @@
 
             public function setData()
             {
-                if (isset($this->date)) $i = 25;
-                else $i = 10;
-
+                if (isset($this->date)){
+                    $i = 25;
+                } else {
+                    $i = 10;
+                }
+                
                 $this->data['mailsentdates'] = [$i, 20, 30];
                 $this->data['accessclearingdate'] = [3, 6, 9];
 
@@ -93,9 +96,12 @@
 
             public function setOptions()
             {
-                if (isset($this->date)) $data = ['apos', 'xlbl2', 'xlbl3'];
-                else $data = ['xlbl1', 'xlbl2', 'xlbl3'];
-
+                if (isset($this->date)) {
+                    $data = ['apos', 'xlbl2', 'xlbl3'];
+                 } else {
+                    $data = ['xlbl1', 'xlbl2', 'xlbl3'];
+                }
+                
                 $this->options([
                     'title' => [
                         'text' => 'The title',
