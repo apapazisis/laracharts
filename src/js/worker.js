@@ -1,4 +1,4 @@
-onmessage = e =>
+onmessage = (e) =>
 {
     var chartId = e.data.chartId;
     var chartClass = e.data.chartClass;
@@ -7,8 +7,8 @@ onmessage = e =>
     var filters = e.data.filters;
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', route, true);
-    xhr.setRequestHeader('X-CSRF-TOKEN', token);
+    xhr.open("POST", route, true);
+    xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = function(e)
@@ -16,9 +16,9 @@ onmessage = e =>
         if (xhr.status === 200 && xhr.readyState === 4) {
             var response = JSON.parse(xhr.response);
 
-            postMessage({'chartArgs': response});
+            postMessage({"chartArgs": response});
         }
     };
 
-    xhr.send('chartClass=' + chartClass + '&' + filters);
+    xhr.send("chartClass=" + chartClass + "&" + filters);
 };
