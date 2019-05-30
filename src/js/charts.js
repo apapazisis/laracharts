@@ -43,6 +43,8 @@ function generateNewChart(chartId, chartArgs)
         yAxis: chartArgs.options.yAxis,
     };
 
+    window[chartId + 'Options']  = options;
+
     const echart = echarts.init(document.getElementById(chartId));
 
     echart.setOption(options);
