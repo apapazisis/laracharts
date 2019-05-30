@@ -14,9 +14,9 @@ class BaseChart
     public $route;
 
     public $datasets = [];
-    
+
     protected $dataset = Dataset::class;
-    
+
     public $labels = [];
 
     public $view = 'echarts::render';
