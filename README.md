@@ -15,199 +15,203 @@ Generate your Charts using **Laravel Echarts PHP library**. It supports the <a h
 ### Documentation
 
 1. Publish the files through 
-          
-          php artisan vendor:publish
-          Provider: Apapazisis\Echarts\EchartsServiceProvider
+```php
+php artisan vendor:publish
+Provider: Apapazisis\Echarts\EchartsServiceProvider
+```
 
 2. Add scripts in header 
-          
-          <script src="{{ asset('js/echarts.min.js') }}"></script> <!-- Download the Echarts library -->
-          <script src="{{ asset('vendor/charts/charts.js')}}"></script>
+```php
+<script src="{{ asset('js/echarts.min.js') }}"></script> <!-- Download the Echarts library -->
+<script src="{{ asset('vendor/charts/charts.js')}}"></script>
+```
 
 3. Routing
+```php
+Route::get('/', function ()
+{
+   $testChart = new \App\Charts\TestChart();
 
-          Route::get('/', function ()
-          {
-              $testChart = new \App\Charts\TestChart();
+   $testChart2 = new \App\Charts\Test2Chart();
 
-              $testChart2 = new \App\Charts\Test2Chart();
-
-              return view('welcome', compact('testChart', 'testChart2'));
-          });
+   return view('welcome', compact('testChart', 'testChart2'));
+});
 
 
-          Route::post('/data', function (\Illuminate\Http\Request $request)
-          {
-              $class = 'App\\Charts\\' . $request->get('chartClass');
-              $chart = (new $class)->make($request->except('chartClass'));
+Route::post('/data', function (\Illuminate\Http\Request $request)
+{
+   $class = 'App\\Charts\\' . $request->get('chartClass');
+   $chart = (new $class)->make($request->except('chartClass'));
 
-              return response()->json(
-                  $chart
-              );
-          });
+   return response()->json(
+         $chart
+   );
+});
+```
 
 4. Blade
-
-          <body>
-              <div class="flex-center position-ref full-height">
-                  <div class="content">
-                      {!! $testChart->render() !!}
-                      {!! $testChart2->render() !!}
-                      1o <input type="text" onchange="{{ $testChart->id }}CreateOrUpdateChart({'date': '2019-01-01'})">
-                      2o <input type="text" onchange="{{ $testChart2->id }}CreateOrUpdateChart()">
-                  </div>
-              </div>
-          </body>
-              
+```php
+ <body>
+     <div class="flex-center position-ref full-height">
+         <div class="content">
+             {!! $testChart->render() !!}
+             {!! $testChart2->render() !!}
+             1o <input type="text" onchange="{{ $testChart->id }}CreateOrUpdateChart({'date': '2019-01-01'})">
+             2o <input type="text" onchange="{{ $testChart2->id }}CreateOrUpdateChart()">
+         </div>
+     </div>
+ </body>
+```        
 4. TestChart Class
-          
-          namespace App\Charts;
+```php          
+ namespace App\Charts;
 
-          use Apapazisis\Echarts\Classes\BaseChart;
-          use Carbon\Carbon;
+ use Apapazisis\Echarts\Classes\BaseChart;
+ use Carbon\Carbon;
 
-          class TestChart extends BaseChart
-          {
-            public $id = 'kjdshksdjfsjdfg'; 
-          
-            protected $date = null; // it is used for filtering
+ class TestChart extends BaseChart
+ {
+   public $id = 'kjdshksdjfsjdfg'; 
 
-            protected $data = [];
+   protected $date = null; // it is used for filtering
 
-            public function __construct()
-            {
-                $this->setRoute(); // Set the route 
-                parent::__construct();
-            }
+   protected $data = [];
 
-            public function make($filters = [])
-            {
-                return $this
-                    ->setFilters($filters) // first we set the filters and then we can use them wherever we want in other functions
-                    ->setData()
-                    ->setOptions()
-                    ->setDataset()
-                    ;
-            }
+   public function __construct()
+   {
+       $this->setRoute(); // Set the route 
+       parent::__construct();
+   }
 
-            public function setData()
-            {
-                if (isset($this->date)){
-                    $i = 25;
-                } else {
-                    $i = 10;
-                }
-                
-                $this->data['mailsentdates'] = [$i, 20, 30];
-                $this->data['accessclearingdate'] = [3, 6, 9];
+   public function make($filters = [])
+   {
+       return $this
+           ->setFilters($filters) // first we set the filters and then we can use them wherever we want in other functions
+           ->setData()
+           ->setOptions()
+           ->setDataset()
+           ;
+   }
 
-                return $this;
-            }
+   public function setData()
+   {
+       if (isset($this->date)){
+           $i = 25;
+       } else {
+           $i = 10;
+       }
 
-            public function setDataset()
-            {
-                $this->dataset('Sales1', 'bar', $this->data['mailsentdates'])->options([
-                    'itemStyle' => [
-                        'normal' => [
-                            'color' => 'function (params){console.log(params);if (params.dataIndex > 0) return "red"; else return "green";}',
-                            'barBorderColor' => 'gray',
-                            'barBorderWidth' => 0,
-                            'label' => [
-                                'show' => true,
-                                'position' => 'top',
-                                'textStyle' => [
-                                    'fontWeight' => 500
-                                ],
-                                'color' => 'gray',
-                                'formatter' => 'function(params){var array = ' . json_encode($this->data['mailsentdates']) . '; return params.data + array[params.dataIndex];}'
-                    
-                            ]
-                        ]
-                    ]
-                ]);
+       $this->data['mailsentdates'] = [$i, 20, 30];
+       $this->data['accessclearingdate'] = [3, 6, 9];
 
-                $this->dataset('Sales2', 'bar', $this->data['accessclearingdate'])->options([
-                    'itemStyle' => [
-                        'normal' => [
-                            'color' => 'function (params){console.log(window.' . $this->id . 'Options);if (params.dataIndex > 0) return "yellow"; else return "blue";}',
-                            'barBorderColor' => 'gray',
-                            'barBorderWidth' => 0,
-                            'label' => [
-                                'show' => true,
-                                'position' => 'top',
-                                'textStyle' => [
-                                    'fontWeight' => 500
-                                ],
-                                'color' => 'gray'
-                            ]
-                        ]
-                    ]
-                ]);
+       return $this;
+   }
 
-                return $this;
-            }
+   public function setDataset()
+   {
+       $this->dataset('Sales1', 'bar', $this->data['mailsentdates'])->options([
+           'itemStyle' => [
+               'normal' => [
+                   'color' => 'function (params){console.log(params);if (params.dataIndex > 0) return "red"; else return "green";}',
+                   'barBorderColor' => 'gray',
+                   'barBorderWidth' => 0,
+                   'label' => [
+                       'show' => true,
+                       'position' => 'top',
+                       'textStyle' => [
+                           'fontWeight' => 500
+                       ],
+                       'color' => 'gray',
+                       'formatter' => 'function(params){var array = ' . json_encode($this->data['mailsentdates']) . '; return params.data + array[params.dataIndex];}'
 
-            public function setOptions()
-            {
-                if (isset($this->date)) {
-                    $data = ['apos', 'xlbl2', 'xlbl3'];
-                 } else {
-                    $data = ['xlbl1', 'xlbl2', 'xlbl3'];
-                }
-                
-                $this->options([
-                    'title' => [
-                        'text' => 'The title',
-                        'show' => true
-                    ],
-                    'tooltip' => [
-                        'trigger' => 'axis',
-                        'axisPointer' => [
-                            'type' => 'cross'
-                        ]
-                    ],
-                    'toolbox' => [
-                          'feature' => [
-                              'saveAsImage' => [
-                                  'show' => true,
-                                  'title' => 'save as image',
-                                  'pixelRatio' => 2
-                              ]
-                          ]
-                    ],
-                    'animationEasing' => 'elasticOut',
-                    'legend' => [
-                        'data' => ['Sales1', 'Sales2']
-                    ],
-                    'xAxis' => [
-                        'type' => 'category',
-                        'data' => $data
-                    ],
-                    'yAxis' => [
-                        'type' => 'value'
-                    ],
-                    'grid' => [
-                        'left' => '0%',
-                        'right' => '0%',
-                        'bottom' => '0%',
-                        'containLabel' => true
-                    ]
-                ]);
+                   ]
+               ]
+           ]
+       ]);
 
-                return $this;
-            }
+       $this->dataset('Sales2', 'bar', $this->data['accessclearingdate'])->options([
+           'itemStyle' => [
+               'normal' => [
+                   'color' => 'function (params){console.log(window.' . $this->id . 'Options);if (params.dataIndex > 0) return "yellow"; else return "blue";}',
+                   'barBorderColor' => 'gray',
+                   'barBorderWidth' => 0,
+                   'label' => [
+                       'show' => true,
+                       'position' => 'top',
+                       'textStyle' => [
+                           'fontWeight' => 500
+                       ],
+                       'color' => 'gray'
+                   ]
+               ]
+           ]
+       ]);
 
-            public function setRoute()
-            {
-                $this->route = url('data');
+       return $this;
+   }
 
-                return $this;
-            }
+   public function setOptions()
+   {
+       if (isset($this->date)) {
+           $data = ['apos', 'xlbl2', 'xlbl3'];
+        } else {
+           $data = ['xlbl1', 'xlbl2', 'xlbl3'];
+       }
 
-            public function setFilters($filters)
-            {
-                $this->date = isset($filters['date']) ? Carbon::parse($filters['date'])->startOfWeek() : null;
+       $this->options([
+           'title' => [
+               'text' => 'The title',
+               'show' => true
+           ],
+           'tooltip' => [
+               'trigger' => 'axis',
+               'axisPointer' => [
+                   'type' => 'cross'
+               ]
+           ],
+           'toolbox' => [
+                 'feature' => [
+                     'saveAsImage' => [
+                         'show' => true,
+                         'title' => 'save as image',
+                         'pixelRatio' => 2
+                     ]
+                 ]
+           ],
+           'animationEasing' => 'elasticOut',
+           'legend' => [
+               'data' => ['Sales1', 'Sales2']
+           ],
+           'xAxis' => [
+               'type' => 'category',
+               'data' => $data
+           ],
+           'yAxis' => [
+               'type' => 'value'
+           ],
+           'grid' => [
+               'left' => '0%',
+               'right' => '0%',
+               'bottom' => '0%',
+               'containLabel' => true
+           ]
+       ]);
 
-                return $this;
-            }
-        }
+       return $this;
+   }
+
+   public function setRoute()
+   {
+       $this->route = url('data');
+
+       return $this;
+   }
+
+   public function setFilters($filters)
+   {
+       $this->date = isset($filters['date']) ? Carbon::parse($filters['date'])->startOfWeek() : null;
+
+       return $this;
+   }
+}
+```
