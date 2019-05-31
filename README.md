@@ -1,6 +1,7 @@
 ## Laravel Ajax Charts with WebWorker
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/97da0999afa84e54ada46b1cabc8ee7c)](https://app.codacy.com/app/apapazisis/laracharts?utm_source=github.com&utm_medium=referral&utm_content=apapazisis/laracharts&utm_campaign=Badge_Grade_Dashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/97da0999afa84e54ada46b1cabc8ee7c)](https://app.codacy.com/app/apapazisis/laracharts?utm_source=github.com&utm_medium=referral&utm_content=apapazisis/laracharts&utm_campaign=Badge_Grade_Dashboard)
 
 <a href="https://github.styleci.io/repos/189413172"><img src="https://github.styleci.io/repos/189413172/shield?branch=master" alt="StyleCI"></a>
 
