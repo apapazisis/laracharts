@@ -6,6 +6,12 @@
 [![Latest Stable Version](https://poser.pugx.org/apapazisis/laravel-echarts/v/stable)](https://packagist.org/packages/apapazisis/laravel-echarts)
 [![License](https://poser.pugx.org/apapazisis/laravel-echarts/license)](https://packagist.org/packages/apapazisis/laravel-echarts)
 
+
+### What is Laravel Echarts?
+
+Laravel Echarts is a PHP (Laravel) library to handle all the charts in your application. It supports the <a href="https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Get%20Started%20with%20ECharts%20in%205%20minutes" target="_blank">Echarts.js library</a>. Charts are loaded through WebWorker in the background, independently of user-interface scripts and without affecting the performance of the page.
+
+
 ### Documentation
 
 1. Publish the files through 
