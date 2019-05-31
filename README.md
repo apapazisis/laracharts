@@ -86,7 +86,6 @@ Generate your Charts using **Laravel Echarts PHP library**. It supports the <a h
                     ->setFilters($filters) // first we set the filters and then we can use them wherever we want in other functions
                     ->setData()
                     ->setOptions()
-                    ->setLabels()
                     ->setDataset()
                     ;
             }
@@ -193,15 +192,6 @@ Generate your Charts using **Laravel Echarts PHP library**. It supports the <a h
                         'bottom' => '0%',
                         'containLabel' => true
                     ]
-                ]);
-
-                return $this;
-            }
-
-            public function setLabels()
-            {
-                $this->labels([
-                    'lbl1', 'lbl2', 'lbl3', 'lbl4'
                 ]);
 
                 return $this;
