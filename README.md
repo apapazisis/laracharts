@@ -178,7 +178,7 @@ Generate your Charts using **Laravel Echarts PHP library**. It supports the <a h
                     ],
                     'animationEasing' => 'elasticOut',
                     'legend' => [
-                        'data' => ['lg1', 'lg2', 'lg3']
+                        'data' => ['Sales1', 'Sales2']
                     ],
                     'xAxis' => [
                         'type' => 'category',
