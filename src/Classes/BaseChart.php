@@ -17,8 +17,6 @@ class BaseChart
 
     protected $dataset = Dataset::class;
 
-    public $labels = [];
-
     public $view = 'echarts::render';
 
     public $options = [];
@@ -34,17 +32,6 @@ class BaseChart
     public function render(): \Illuminate\Contracts\View\View
     {
         return View::make($this->view, ['chart' => $this]);
-    }
-
-    public function labels($labels)
-    {
-        if ($labels instanceof Collection) {
-            $labels = $labels->toArray();
-        }
-
-        $this->labels = $labels;
-
-        return $this;
     }
 
     public function legend(array $legend)
