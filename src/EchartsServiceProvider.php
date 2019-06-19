@@ -16,7 +16,7 @@ class EchartsServiceProvider extends ServiceProvider
         ], 'public');
         
         $this->publishes([
-            __DIR__ . '/Views' => resource_path('views/vendor/echarts')
+            __DIR__.'/Views' => resource_path('views/vendor/echarts')
         ], 'view');
     }
 }
