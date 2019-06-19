@@ -14,5 +14,9 @@ class EchartsServiceProvider extends ServiceProvider
             __DIR__.'/js/worker.js' => public_path('vendor/charts'),
             __DIR__.'/js/charts.js' => public_path('vendor/charts'),
         ], 'public');
+        
+        $this->publishes([
+            __DIR__ . '/Views' => resource_path('views/vendor/echarts')
+        ], 'view');
     }
 }
