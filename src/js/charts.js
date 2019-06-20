@@ -24,4 +24,6 @@ function generateNewChart(chartId, chartArgs)
     const echart = echarts.init(document.getElementById(chartId));
 
     echart.setOption(chartArgs);
+    
+    window[chartId] = echart;
 }
