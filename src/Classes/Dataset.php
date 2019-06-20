@@ -47,7 +47,7 @@ class Dataset
 
         return $this;
     }
-    
+
     public function format()
     {
         return array_merge($this->options, [
