@@ -57,18 +57,17 @@ class BaseChart
 
         return $this;
     }
-    
+
     public function formatDatasets()
     {
         return Collection::make([
             'series' => Collection::make($this->datasets)
             ->map(function (Dataset $dataset) {
                 return $dataset->format();
-            })
+            }),
         ])
             ->merge($this->options)
-            ->toArray()
-            ;
+            ->toArray();
     }
 
     public function get()
