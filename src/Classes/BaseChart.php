@@ -34,11 +34,6 @@ class BaseChart
         return View::make($this->view, ['chart' => $this]);
     }
 
-    public function legend(array $legend)
-    {
-        $this->legend = $legend;
-    }
-
     public function dataset(string $name, string $type, $data)
     {
         if ($data instanceof Collection) {
@@ -61,5 +56,23 @@ class BaseChart
         $this->options = $options;
 
         return $this;
+    }
+    
+    public function formatDatasets()
+    {
+        return Collection::make([
+            'series' => Collection::make($this->datasets)
+            ->map(function (Dataset $dataset) {
+                return $dataset->format();
+            })
+        ])
+            ->merge($this->options)
+            ->toArray()
+            ;
+    }
+
+    public function get()
+    {
+        return $this->formatDatasets();
     }
 }
