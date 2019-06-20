@@ -1,7 +1,13 @@
-<div id="{{ $chart->id }}" style="width:600px; height:400px;">
+<div id="{{ $chart->id }}" style="position:relative;display:block;width: 100%; height:400px;">
 </div>
 
 <script>
+    window.onresize = function() {
+        setTimeout(function () {
+            window['{{ $chart->id }}'].resize();
+        }, 200);
+    };
+    
     window.addEventListener('load', function(e)
     {
         {{ $chart->id }}CreateOrUpdateChart();
