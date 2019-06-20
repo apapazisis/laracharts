@@ -44,7 +44,7 @@ Route::post('/data', function (\Illuminate\Http\Request $request)
    $chart = (new $class)->make($request->except('chartClass'));
 
    return response()->json(
-         $chart
+         $chart->get()
    );
 });
 ```
