@@ -47,4 +47,13 @@ class Dataset
 
         return $this;
     }
+    
+    public function format()
+    {
+        return array_merge($this->options, [
+            'data' => $this->data,
+            'name' => $this->name,
+            'type' => strtolower($this->type),
+        ]);
+    }
 }
